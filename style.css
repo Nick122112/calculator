@@ -1,4 +1,26 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: 0;
+}
+
+html {
+  font-size: 62.5%;
+}
+
 .display-value-screen {
   color: black;
   font-size: 20px;
+}
+
+.content-container {
+  max-width: 120rem;
+  margin: 0 auto;
+  display: flex;
+  flex-direction: center;
+  align-items: center;
+}
+
+.calculator-container {
+  width: 50rem;
 }
