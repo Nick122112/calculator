@@ -35,11 +35,6 @@ function operate(operator, a, b) {
   }
 }
 
-console.log(add(50, 25));
-console.log(subtract(50, 25));
-console.log(multiply(50, 25));
-console.log(divide(50, 25));
-
 //creates display value array
 let numberSet = [];
 
@@ -58,96 +53,78 @@ displayContainer.appendChild(displaySolution);
 //sets initial displayEquation to 0
 let equation = 0;
 displayEquation.textContent = equation;
+displaySolution.textContent = "";
 
 //adds value to the equation array
 function addValue(buttonValue) {
   numberSet.push(buttonValue);
-  console.log(numberSet);
   joinValue();
 }
 
 // joins displayEquation array so that it makes a single string
 function joinValue() {
+  numberSet.join("");
   equation = numberSet.join("");
   displayEquation.textContent = equation;
+  displaySolution.textContent = "";
 }
-//creates backspaceBtn variable and adds event listener that calls backspaceBtn
-// const backspaceBtn = document.getElementById("backspace-button");
-// backspaceBtn.addEventListener("click", clickBackspaceBtn);
 
-//creates clearButton variable and adds event listener that call clickClearBtn function
+//**********************************
+//BUTTONS
+//**********************************
 const clearButton = document.getElementById("clear-button");
 clearButton.addEventListener("click", clickClearBtn);
 
-// creates button1 variable and adds and event listener that calls clickBtn1 function
 const button1 = document.getElementById("button1");
 button1.addEventListener("click", clickBtn1);
 
-// creates button2 variable and adds an event listener that calls clickBtn2 function
 const button2 = document.getElementById("button2");
 button2.addEventListener("click", clickBtn2);
 
-// creates button3 variable and adds an event listener that calls clickBtn3 function
 const button3 = document.getElementById("button3");
 button3.addEventListener("click", clickBtn3);
 
-// creates button4 variable and adds an event listener that calls clickBtn4 function
 const button4 = document.getElementById("button4");
 button4.addEventListener("click", clickBtn4);
 
-// creates button5 variable and adds an event listener that calls clickBtn5 function
 const button5 = document.getElementById("button5");
 button5.addEventListener("click", clickBtn5);
 
-// creates button6 variable and adds an event listener that calls clickBtn6 function
 const button6 = document.getElementById("button6");
 button6.addEventListener("click", clickBtn6);
 
-// creates button7 variable and adds an event listener that calls clickBtn7 function
 const button7 = document.getElementById("button7");
 button7.addEventListener("click", clickBtn7);
 
-// creates button8 variable and adds an event listener that calls clickBtn9 function
 const button8 = document.getElementById("button8");
 button8.addEventListener("click", clickBtn8);
 
-// creates button9 variable and adds an event listener that calls clickBtn9 function
 const button9 = document.getElementById("button9");
 button9.addEventListener("click", clickBtn9);
 
-// creates button0 variable and adds an event listener that calls clickBtn0 function
 const button0 = document.getElementById("button0");
 button0.addEventListener("click", clickBtn0);
 
-//creates addBtn variable and adds an event listener that calls clickAddBtn function
 const addBtn = document.querySelector("#add-btn");
 addBtn.addEventListener("click", clickAddBtn);
 
-//creates subtractBtn variable and adds an event listener that calls clickSubtractBtn function
 const subtractBtn = document.querySelector("#subtract-btn");
 subtractBtn.addEventListener("click", clickSubtractBtn);
 
-//creates multBtn variable and adds an event listener that calls clicMultBtn function
 const multBtn = document.querySelector("#mult-btn");
 multBtn.addEventListener("click", clickMultBtn);
 
-//creates multBtn variable and adds an event listener that calls clicMultBtn function
 const divBtn = document.querySelector("#div-btn");
 divBtn.addEventListener("click", clickDivBtn);
 
-//creates equalBtn variable and adds an event listener that calls equalBtn variable
 const equalBtn = document.querySelector("#equal-btn");
 equalBtn.addEventListener("click", clickEqualBtn);
 
 function clickClearBtn() {
   numberSet = [];
   displayEquation.textContent = 0;
+  displaySolution.textContent = "";
 }
-
-// function clickBackspaceBtn() {
-//   numberSet.pop();
-//   displayEquation.textContent = numberSet.join("");
-// }
 
 function clickBtn1() {
   addValue(1);
@@ -181,6 +158,12 @@ function clickBtn0() {
   addValue(0);
 }
 
+// let decimalValue;
+// function clickDecimalBtn() {
+//   let decimalValue = ".";
+//   addValue(decimalValue);
+// }
+
 let numberSetArray1;
 let numberSetArray2;
 let numberSetNumber1;
@@ -188,23 +171,63 @@ let numberSetNumber2;
 let operator;
 
 function clickAddBtn() {
-  operator = "+";
-  clickOperatorFunc();
+  if (
+    numberSet.includes("+") ||
+    numberSet.includes("-") ||
+    numberSet.includes("*") ||
+    numberSet.includes("/")
+  ) {
+    addEqual();
+  } else {
+    operator = "+";
+    clickOperatorFunc();
+    operatorBeginning();
+  }
 }
 
 function clickSubtractBtn() {
-  operator = "-";
-  clickOperatorFunc();
+  if (
+    numberSet.includes("+") ||
+    numberSet.includes("-") ||
+    numberSet.includes("*") ||
+    numberSet.includes("/")
+  ) {
+    subtractEqual();
+  } else {
+    operator = "-";
+    clickOperatorFunc();
+    operatorBeginning();
+  }
 }
 
 function clickMultBtn() {
-  operator = "*";
-  clickOperatorFunc();
+  if (
+    numberSet.includes("+") ||
+    numberSet.includes("-") ||
+    numberSet.includes("*") ||
+    numberSet.includes("/")
+  ) {
+    multEqual();
+  } else {
+    operator = "*";
+    clickOperatorFunc();
+    operatorBeginning();
+  }
 }
 
 function clickDivBtn() {
-  operator = "/";
-  clickOperatorFunc();
+  if (
+    numberSet.includes("+") ||
+    numberSet.includes("-") ||
+    numberSet.includes("*") ||
+    numberSet.includes("/")
+  ) {
+    divEqual();
+  } else {
+    operator = "/";
+    clickOperatorFunc();
+    operatorBeginning();
+  }
 }
 
 function clickEqualBtn() {
@@ -220,32 +243,166 @@ function clickEqualBtn() {
   } else if (numberSet.includes("/")) {
     operator = "/";
     clickEqualFunc();
+    divideByZeroAlert();
   }
 }
 
 function clickOperatorFunc() {
   numberSet.push(operator);
-  console.log(numberSet);
-  console.log(numberSet.indexOf(operator));
   numberSetArray1 = numberSet.slice(0, numberSet.indexOf(operator)).join("");
   numberSetNumber1 = Number(numberSetArray1);
-  console.log(numberSetNumber1);
-  return numberSetNumber1;
+  displayEquation.textContent = numberSet.join("");
+  displaySolution.textContent = "";
 }
 
 function clickEqualFunc() {
+  numberSetArray1 = numberSet.slice(0, numberSet.indexOf(operator)).join("");
+  numberSetNumber1 = Number(numberSetArray1);
   numberSetArray2 = numberSet
     .slice(numberSet.indexOf(operator) + 1, numberSet.length)
     .join("");
   numberSetNumber2 = Number(numberSetArray2);
-  console.log(numberSetNumber2);
   operate(operator, numberSetNumber1, numberSetNumber2);
   const solution = operate(operator, numberSetNumber1, numberSetNumber2);
-  console.log(solution);
-  displaySolution.textContent = solution;
+  const roundedSolution = Math.round(solution * 1000) / 1000;
+  displaySolution.textContent = roundedSolution;
   if (typeof solution !== "undefined") {
     numberSet.splice(0, numberSet.length);
-    numberSet.push(solution);
-    console.log(numberSet);
+    numberSet.push(roundedSolution);
   }
 }
+
+function addEqual() {
+  numberSetArray1 = numberSet.slice(0, numberSet.indexOf(operator)).join("");
+  numberSetArray2 = numberSet
+    .slice(numberSet.indexOf(operator) + 1, numberSet.length)
+    .join("");
+  numberSetNumber1 = Number(numberSetArray1);
+  numberSetNumber2 = Number(numberSetArray2);
+  const solution = operate(operator, numberSetNumber1, numberSetNumber2);
+  const roundedSolution = Math.round(solution * 1000) / 1000;
+  displaySolution.textContent = roundedSolution;
+  if (typeof solution !== "undefined") {
+    operator = "+";
+    numberSet.splice(0, numberSet.length);
+    numberSet.push(roundedSolution);
+    numberSet.push(operator);
+  }
+}
+
+function subtractEqual() {
+  numberSetArray1 = numberSet.slice(0, numberSet.indexOf(operator)).join("");
+  numberSetArray2 = numberSet
+    .slice(numberSet.indexOf(operator) + 1, numberSet.length)
+    .join("");
+  numberSetNumber1 = Number(numberSetArray1);
+  numberSetNumber2 = Number(numberSetArray2);
+  const solution = operate(operator, numberSetNumber1, numberSetNumber2);
+  const roundedSolution = Math.round(solution * 1000) / 1000;
+  displaySolution.textContent = roundedSolution;
+  if (typeof solution !== "undefined") {
+    operator = "-";
+    numberSet.splice(0, numberSet.length);
+    numberSet.push(roundedSolution);
+    numberSet.push(operator);
+  }
+}
+
+function multEqual() {
+  numberSetArray1 = numberSet.slice(0, numberSet.indexOf(operator)).join("");
+  numberSetArray2 = numberSet
+    .slice(numberSet.indexOf(operator) + 1, numberSet.length)
+    .join("");
+  numberSetNumber1 = Number(numberSetArray1);
+  numberSetNumber2 = Number(numberSetArray2);
+  const solution = operate(operator, numberSetNumber1, numberSetNumber2);
+  const roundedSolution = Math.round(solution * 1000) / 1000;
+  displaySolution.textContent = roundedSolution;
+  if (typeof solution !== "undefined") {
+    operator = "*";
+    numberSet.splice(0, numberSet.length);
+    numberSet.push(roundedSolution);
+    numberSet.push(operator);
+  }
+}
+
+function divEqual() {
+  numberSetArray1 = numberSet.slice(0, numberSet.indexOf(operator)).join("");
+  numberSetArray2 = numberSet
+    .slice(numberSet.indexOf(operator) + 1, numberSet.length)
+    .join("");
+  numberSetNumber1 = Number(numberSetArray1);
+  numberSetNumber2 = Number(numberSetArray2);
+  const solution = operate(operator, numberSetNumber1, numberSetNumber2);
+  const roundedSolution = Math.round(solution * 1000) / 1000;
+  displaySolution.textContent = roundedSolution;
+  if (typeof solution !== "undefined") {
+    operator = "/";
+    numberSet.splice(0, numberSet.length);
+    numberSet.push(roundedSolution);
+    numberSet.push(operator);
+  }
+  divideByZeroAlert();
+}
+
+function operatorBeginning() {
+  if (
+    numberSet[0] === "+" ||
+    numberSet[0] === "-" ||
+    numberSet[0] === "*" ||
+    numberSet[0] === "/"
+  ) {
+    numberSet.pop();
+  }
+}
+
+function divideByZeroAlert() {
+  if (numberSetNumber2 === 0) {
+    alert(`You cannot divide by zero. Calcuator has been reset.`);
+    numberSet = [];
+    displayEquation.textContent = 0;
+    displaySolution.textContent = "";
+  }
+}
+
+//decimal button
+const decimalBtn = document.querySelector("#decimal-button");
+decimalBtn.addEventListener("click", () => {
+  numberSetArray2 = numberSet
+    .slice(numberSet.indexOf(operator) + 1, numberSet.length)
+    .join("");
+  if (
+    numberSet.includes("+") === false &&
+    numberSet.includes("-") === false &&
+    numberSet.includes("*") === false &&
+    numberSet.includes("/") === false &&
+    numberSet.includes(".")
+  ) {
+    addValue("");
+  } else if (numberSetArray2.includes(".")) {
+    addValue("");
+  } else {
+    addValue(".");
+  }
+});
+
+// const backspaceBtn = document.querySelector("#backspace-button");
+// backspaceBtn.addEventListener("click", () => {
+//   numberSetArray2 = numberSet.slice(
+//     numberSet.indexOf(operator) + 1,
+//     numberSet.length
+//   );
+//   if (
+//     numberSet.includes("+") === false &&
+//     numberSet.includes("-") === false &&
+//     numberSet.includes("*") === false &&
+//     numberSet.includes("/") === false
+//   ) {
+//     numberSet.pop();
+//     console.log(numberSet);
+//     displayEquation.textContent = numberSet.join("");
+//   } else {
+//     numberSetArray2.pop();
+//     displayEquation.textContent = numberSetNumber2;
+//   }
+// });
