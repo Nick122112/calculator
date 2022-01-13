@@ -51,12 +51,12 @@ displayContainer.setAttribute(
 // sets displayEquation variable
 const displayEquation = document.createElement("p");
 displayContainer.appendChild(displayEquation);
-displayEquation.setAttribute("style", "font-size: 3.2rem;");
+displayEquation.setAttribute("style", "font-size: 2.4rem;");
 
 //sets displaySolution variable
 const displaySolution = document.createElement("p");
 displayContainer.appendChild(displaySolution);
-displaySolution.setAttribute("style", "font-size: 3.2rem;");
+displaySolution.setAttribute("style", "font-size: 2.4rem;");
 
 //sets initial displayEquation to 0
 let equation = 0;
