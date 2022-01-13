@@ -188,7 +188,6 @@ function clickAddBtn() {
   numberSetArray2 = numberSet
     .slice(numberSet.indexOf(operator) + 1, numberSet.length)
     .join("");
-  console.log(numberSet);
   if (
     (numberSet.includes("+") && numberSetArray2.length > 0) ||
     (numberSet.includes("-") && numberSetArray2.length > 0) ||
@@ -196,14 +195,13 @@ function clickAddBtn() {
     (numberSet.includes("/") && numberSetArray2.length > 0)
   ) {
     addEqual();
-    console.log(numberSet);
   } else if (
     numberSet.includes("+") ||
     numberSet.includes("-") ||
     numberSet.includes("*") ||
     numberSet.includes("/")
   ) {
-    console.log(numberSet);
+    return;
   } else if (
     numberSet.includes("+") === false ||
     numberSet.includes("-") === false ||
@@ -220,7 +218,6 @@ function clickSubtractBtn() {
   numberSetArray2 = numberSet
     .slice(numberSet.indexOf(operator) + 1, numberSet.length)
     .join("");
-  console.log(numberSet);
   if (
     (numberSet.includes("+") && numberSetArray2.length > 0) ||
     (numberSet.includes("-") && numberSetArray2.length > 0) ||
@@ -228,14 +225,13 @@ function clickSubtractBtn() {
     (numberSet.includes("/") && numberSetArray2.length > 0)
   ) {
     subtractEqual();
-    console.log(numberSet);
   } else if (
     numberSet.includes("+") ||
     numberSet.includes("-") ||
     numberSet.includes("*") ||
     numberSet.includes("/")
   ) {
-    console.log(numberSet);
+    return;
   } else if (
     numberSet.includes("+") === false ||
     numberSet.includes("-") === false ||
@@ -252,7 +248,6 @@ function clickMultBtn() {
   numberSetArray2 = numberSet
     .slice(numberSet.indexOf(operator) + 1, numberSet.length)
     .join("");
-  console.log(numberSet);
   if (
     (numberSet.includes("+") && numberSetArray2.length > 0) ||
     (numberSet.includes("-") && numberSetArray2.length > 0) ||
@@ -260,14 +255,13 @@ function clickMultBtn() {
     (numberSet.includes("/") && numberSetArray2.length > 0)
   ) {
     multEqual();
-    console.log(numberSet);
   } else if (
     numberSet.includes("+") ||
     numberSet.includes("-") ||
     numberSet.includes("*") ||
     numberSet.includes("/")
   ) {
-    console.log(numberSet);
+    return;
   } else if (
     numberSet.includes("+") === false ||
     numberSet.includes("-") === false ||
@@ -284,7 +278,6 @@ function clickDivBtn() {
   numberSetArray2 = numberSet
     .slice(numberSet.indexOf(operator) + 1, numberSet.length)
     .join("");
-  console.log(numberSet);
   if (
     (numberSet.includes("+") && numberSetArray2.length > 0) ||
     (numberSet.includes("-") && numberSetArray2.length > 0) ||
@@ -292,14 +285,13 @@ function clickDivBtn() {
     (numberSet.includes("/") && numberSetArray2.length > 0)
   ) {
     divEqual();
-    console.log(numberSet);
   } else if (
     numberSet.includes("+") ||
     numberSet.includes("-") ||
     numberSet.includes("*") ||
     numberSet.includes("/")
   ) {
-    console.log(numberSet);
+    return;
   } else if (
     numberSet.includes("+") === false ||
     numberSet.includes("-") === false ||
@@ -340,9 +332,9 @@ function clickDecimalBtn() {
     numberSet.includes("/") === false &&
     numberSet.includes(".")
   ) {
-    console.log(numberSet);
+    return;
   } else if (numberSetArray2.includes(".")) {
-    console.log(numberSet);
+    return;
   } else {
     addValue(".");
   }
@@ -388,6 +380,7 @@ function addEqual() {
     numberSet.splice(0, numberSet.length);
     numberSet.push(roundedSolution);
     numberSet.push(operator);
+    displayEquation.textContent = numberSet.join("");
   }
 }
 
@@ -406,6 +399,7 @@ function subtractEqual() {
     numberSet.splice(0, numberSet.length);
     numberSet.push(roundedSolution);
     numberSet.push(operator);
+    displayEquation.textContent = numberSet.join("");
   }
 }
 
@@ -424,6 +418,7 @@ function multEqual() {
     numberSet.splice(0, numberSet.length);
     numberSet.push(roundedSolution);
     numberSet.push(operator);
+    displayEquation.textContent = numberSet.join("");
   }
 }
 
@@ -442,6 +437,7 @@ function divEqual() {
     numberSet.splice(0, numberSet.length);
     numberSet.push(roundedSolution);
     numberSet.push(operator);
+    displayEquation.textContent = numberSet.join("");
   }
   divideByZeroAlert();
 }
