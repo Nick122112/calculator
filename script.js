@@ -329,6 +329,25 @@ function clickEqualBtn() {
   }
 }
 
+function clickDecimalBtn() {
+  numberSetArray2 = numberSet
+    .slice(numberSet.indexOf(operator) + 1, numberSet.length)
+    .join("");
+  if (
+    numberSet.includes("+") === false &&
+    numberSet.includes("-") === false &&
+    numberSet.includes("*") === false &&
+    numberSet.includes("/") === false &&
+    numberSet.includes(".")
+  ) {
+    console.log(numberSet);
+  } else if (numberSetArray2.includes(".")) {
+    console.log(numberSet);
+  } else {
+    addValue(".");
+  }
+}
+
 function clickOperatorFunc() {
   numberSet.push(operator);
   numberSetArray1 = numberSet.slice(0, numberSet.indexOf(operator)).join("");
@@ -449,27 +468,62 @@ function divideByZeroAlert() {
 
 //decimal button
 const decimalBtn = document.querySelector("#decimal-button");
-decimalBtn.addEventListener("click", () => {
-  numberSetArray2 = numberSet
-    .slice(numberSet.indexOf(operator) + 1, numberSet.length)
-    .join("");
-  if (
-    numberSet.includes("+") === false &&
-    numberSet.includes("-") === false &&
-    numberSet.includes("*") === false &&
-    numberSet.includes("/") === false &&
-    numberSet.includes(".")
-  ) {
-    console.log(numberSet);
-  } else if (numberSetArray2.includes(".")) {
-    console.log(numberSet);
-  } else {
-    addValue(".");
-  }
-});
+decimalBtn.addEventListener("click", clickDecimalBtn);
 
 // keyboard functionality
 window.addEventListener("keydown", function (e) {
-  const button = document.querySelector(`button[data-key=${e.keyCode}]`);
-  console.log(button);
+  if (e.keyCode === 49) {
+    clickBtn1();
+  }
+  if (e.keyCode === 50) {
+    clickBtn2();
+  }
+  if (e.keyCode === 51) {
+    clickBtn3();
+  }
+  if (e.keyCode === 52) {
+    clickBtn4();
+  }
+  if (e.keyCode === 53) {
+    clickBtn5();
+  }
+  if (e.keyCode === 54) {
+    clickBtn6();
+  }
+  if (e.keyCode === 55) {
+    clickBtn7();
+  }
+  if (e.keyCode === 56) {
+    clickBtn8();
+  }
+  if (e.keyCode === 57) {
+    clickBtn9();
+  }
+  if (e.keyCode === 48) {
+    clickBtn0();
+  }
+  if (e.keyCode === 111 || e.keyCode === 191) {
+    clickDivBtn();
+  }
+  if (e.keyCode === 106 || (e.keyCode === 56 && e.shiftKey)) {
+    clickMultBtn();
+  }
+  if (e.keyCode === 109 || e.keyCode === 189) {
+    clickSubtractBtn();
+  }
+  if (e.keyCode === 107 || (e.keyCode === 187 && e.shiftKey)) {
+    clickAddBtn();
+  }
+  if (e.keyCode === 13 || e.keyCode === 187) {
+    clickEqualBtn();
+  }
+  if (e.keyCode === 110 || e.keyCode === 190) {
+    clickDecimalBtn();
+  }
+  if (e.keyCode === 8 || e.keyCode === 46) {
+    clickBackSpaceBtn();
+  }
+  if (e.keyCode === 27) {
+    clickClearBtn();
+  }
 });
