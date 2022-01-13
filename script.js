@@ -40,15 +40,23 @@ let numberSet = [];
 
 //sets displayContainer variable
 const displayContainer = document.createElement("div");
-document.querySelector(".calculator-container").appendChild(displayContainer);
+document
+  .querySelector(".calculator-container")
+  .insertBefore(displayContainer, document.querySelector("#button-container"));
+displayContainer.setAttribute(
+  "style",
+  "background-color: #BDC69F; height: 8rem; border-radius: 0.8rem; padding: 0.5rem 2rem; display: flex; flex-direction:column; justify-content: flex-end; align-items: flex-end"
+);
 
 // sets displayEquation variable
 const displayEquation = document.createElement("p");
 displayContainer.appendChild(displayEquation);
+displayEquation.setAttribute("style", "font-size: 3.2rem;");
 
 //sets displaySolution variable
 const displaySolution = document.createElement("p");
 displayContainer.appendChild(displaySolution);
+displaySolution.setAttribute("style", "font-size: 3.2rem;");
 
 //sets initial displayEquation to 0
 let equation = 0;
@@ -105,6 +113,9 @@ button9.addEventListener("click", clickBtn9);
 const button0 = document.getElementById("button0");
 button0.addEventListener("click", clickBtn0);
 
+const backspaceBtn = document.getElementById("backspace-button");
+backspaceBtn.addEventListener("click", clickBackSpaceBtn);
+
 const addBtn = document.querySelector("#add-btn");
 addBtn.addEventListener("click", clickAddBtn);
 
@@ -158,11 +169,14 @@ function clickBtn0() {
   addValue(0);
 }
 
-// let decimalValue;
-// function clickDecimalBtn() {
-//   let decimalValue = ".";
-//   addValue(decimalValue);
-// }
+function clickBackSpaceBtn() {
+  numberSet.pop();
+  displayEquation.textContent = numberSet.join("");
+  displaySolution.textContent = "";
+  if (numberSet.length == 0) {
+    displayEquation.textContent = 0;
+  }
+}
 
 let numberSetArray1;
 let numberSetArray2;
@@ -385,24 +399,3 @@ decimalBtn.addEventListener("click", () => {
     addValue(".");
   }
 });
-
-// const backspaceBtn = document.querySelector("#backspace-button");
-// backspaceBtn.addEventListener("click", () => {
-//   numberSetArray2 = numberSet.slice(
-//     numberSet.indexOf(operator) + 1,
-//     numberSet.length
-//   );
-//   if (
-//     numberSet.includes("+") === false &&
-//     numberSet.includes("-") === false &&
-//     numberSet.includes("*") === false &&
-//     numberSet.includes("/") === false
-//   ) {
-//     numberSet.pop();
-//     console.log(numberSet);
-//     displayEquation.textContent = numberSet.join("");
-//   } else {
-//     numberSetArray2.pop();
-//     displayEquation.textContent = numberSetNumber2;
-//   }
-// });
