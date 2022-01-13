@@ -185,14 +185,31 @@ let numberSetNumber2;
 let operator;
 
 function clickAddBtn() {
+  numberSetArray2 = numberSet
+    .slice(numberSet.indexOf(operator) + 1, numberSet.length)
+    .join("");
+  console.log(numberSet);
   if (
+    (numberSet.includes("+") && numberSetArray2.length > 0) ||
+    (numberSet.includes("-") && numberSetArray2.length > 0) ||
+    (numberSet.includes("*") && numberSetArray2.length > 0) ||
+    (numberSet.includes("/") && numberSetArray2.length > 0)
+  ) {
+    addEqual();
+    console.log(numberSet);
+  } else if (
     numberSet.includes("+") ||
     numberSet.includes("-") ||
     numberSet.includes("*") ||
     numberSet.includes("/")
   ) {
-    addEqual();
-  } else {
+    console.log(numberSet);
+  } else if (
+    numberSet.includes("+") === false ||
+    numberSet.includes("-") === false ||
+    numberSet.includes("*") === false ||
+    numberSet.includes("/") === false
+  ) {
     operator = "+";
     clickOperatorFunc();
     operatorBeginning();
@@ -200,14 +217,31 @@ function clickAddBtn() {
 }
 
 function clickSubtractBtn() {
+  numberSetArray2 = numberSet
+    .slice(numberSet.indexOf(operator) + 1, numberSet.length)
+    .join("");
+  console.log(numberSet);
   if (
+    (numberSet.includes("+") && numberSetArray2.length > 0) ||
+    (numberSet.includes("-") && numberSetArray2.length > 0) ||
+    (numberSet.includes("*") && numberSetArray2.length > 0) ||
+    (numberSet.includes("/") && numberSetArray2.length > 0)
+  ) {
+    subtractEqual();
+    console.log(numberSet);
+  } else if (
     numberSet.includes("+") ||
     numberSet.includes("-") ||
     numberSet.includes("*") ||
     numberSet.includes("/")
   ) {
-    subtractEqual();
-  } else {
+    console.log(numberSet);
+  } else if (
+    numberSet.includes("+") === false ||
+    numberSet.includes("-") === false ||
+    numberSet.includes("*") === false ||
+    numberSet.includes("/") === false
+  ) {
     operator = "-";
     clickOperatorFunc();
     operatorBeginning();
@@ -215,14 +249,31 @@ function clickSubtractBtn() {
 }
 
 function clickMultBtn() {
+  numberSetArray2 = numberSet
+    .slice(numberSet.indexOf(operator) + 1, numberSet.length)
+    .join("");
+  console.log(numberSet);
   if (
+    (numberSet.includes("+") && numberSetArray2.length > 0) ||
+    (numberSet.includes("-") && numberSetArray2.length > 0) ||
+    (numberSet.includes("*") && numberSetArray2.length > 0) ||
+    (numberSet.includes("/") && numberSetArray2.length > 0)
+  ) {
+    multEqual();
+    console.log(numberSet);
+  } else if (
     numberSet.includes("+") ||
     numberSet.includes("-") ||
     numberSet.includes("*") ||
     numberSet.includes("/")
   ) {
-    multEqual();
-  } else {
+    console.log(numberSet);
+  } else if (
+    numberSet.includes("+") === false ||
+    numberSet.includes("-") === false ||
+    numberSet.includes("*") === false ||
+    numberSet.includes("/") === false
+  ) {
     operator = "*";
     clickOperatorFunc();
     operatorBeginning();
@@ -230,14 +281,31 @@ function clickMultBtn() {
 }
 
 function clickDivBtn() {
+  numberSetArray2 = numberSet
+    .slice(numberSet.indexOf(operator) + 1, numberSet.length)
+    .join("");
+  console.log(numberSet);
   if (
+    (numberSet.includes("+") && numberSetArray2.length > 0) ||
+    (numberSet.includes("-") && numberSetArray2.length > 0) ||
+    (numberSet.includes("*") && numberSetArray2.length > 0) ||
+    (numberSet.includes("/") && numberSetArray2.length > 0)
+  ) {
+    divEqual();
+    console.log(numberSet);
+  } else if (
     numberSet.includes("+") ||
     numberSet.includes("-") ||
     numberSet.includes("*") ||
     numberSet.includes("/")
   ) {
-    divEqual();
-  } else {
+    console.log(numberSet);
+  } else if (
+    numberSet.includes("+") === false ||
+    numberSet.includes("-") === false ||
+    numberSet.includes("*") === false ||
+    numberSet.includes("/") === false
+  ) {
     operator = "/";
     clickOperatorFunc();
     operatorBeginning();
@@ -392,10 +460,16 @@ decimalBtn.addEventListener("click", () => {
     numberSet.includes("/") === false &&
     numberSet.includes(".")
   ) {
-    addValue("");
+    console.log(numberSet);
   } else if (numberSetArray2.includes(".")) {
-    addValue("");
+    console.log(numberSet);
   } else {
     addValue(".");
   }
+});
+
+// keyboard functionality
+window.addEventListener("keydown", function (e) {
+  const button = document.querySelector(`button[data-key=${e.keyCode}]`);
+  console.log(button);
 });
