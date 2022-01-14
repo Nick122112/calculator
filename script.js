@@ -489,7 +489,7 @@ window.addEventListener("keydown", function (e) {
   if (e.keyCode === 55) {
     clickBtn7();
   }
-  if (e.keyCode === 56) {
+  if (e.keyCode === 56 && !e.shiftKey) {
     clickBtn8();
   }
   if (e.keyCode === 57) {
@@ -510,7 +510,7 @@ window.addEventListener("keydown", function (e) {
   if (e.keyCode === 107 || (e.keyCode === 187 && e.shiftKey)) {
     clickAddBtn();
   }
-  if (e.keyCode === 13 || e.keyCode === 187) {
+  if (e.keyCode === 13 || (e.keyCode === 187 && !e.shiftKey)) {
     clickEqualBtn();
   }
   if (e.keyCode === 110 || e.keyCode === 190) {
